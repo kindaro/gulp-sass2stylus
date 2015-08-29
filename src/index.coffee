@@ -1,5 +1,9 @@
 fs = require('fs')
-request = require 'request'
+
+Client = require 'simple-request'
+cli = new Client()
+
+
 
 
 api_endpoint = 'http://sass2stylus.com/api'
@@ -15,6 +19,6 @@ fs.readFile example, (err, body) ->
         method: 'POST'
         body: body.toString()
 
-    request options, (error, response, body) ->
+    cli.post api_endpoint, body, {expect: true}, (err, res) ->
         console.log 'request sent, response received.'
-        console.log body
+        console.log res.data
