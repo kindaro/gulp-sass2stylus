@@ -1,0 +1,23 @@
+{
+  "name": "gulp-sass2stylus",
+  "version": "1.0.0",
+  "description": "Gulp wrapper for sass2stylus REST API.",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/kindaro/gulp-sass2stylus"
+  },
+  "keywords": [
+    "gulp",
+    "sass2stylus"
+  ],
+  "author": "Ignat Insarov",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/kindaro/gulp-sass2stylus/issues"
+  },
+  "homepage": "https://github.com/kindaro/gulp-sass2stylus"
+}
