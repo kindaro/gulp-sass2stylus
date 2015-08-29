@@ -1,14 +1,20 @@
-Cli = require('node-rest-client').Client
-cli = new Cli()
 fs = require('fs')
+request = require 'request'
+
 
 api_endpoint = 'http://sass2stylus.com/api'
 example = 'example.scss'
 
-cli.registerMethod 'go', api_endpoint, 'POST'
 
-fs.readFile example, (err, data) ->
+fs.readFile example, (err, body) ->
     console.log 'read file done'
-    cli.methods.go {data: data}, (data, response) ->
+    console.log body.toString()
+
+    options =
+        url: api_endpoint
+        method: 'POST'
+        body: body.toString()
+
+    request options, (error, response, body) ->
         console.log 'request sent, response received.'
-        console.log response
+        console.log body
