@@ -19,5 +19,12 @@
   "bugs": {
     "url": "https://github.com/kindaro/gulp-sass2stylus/issues"
   },
-  "homepage": "https://github.com/kindaro/gulp-sass2stylus"
+  "homepage": "https://github.com/kindaro/gulp-sass2stylus",
+  "dependencies": {
+    "gulp": "^3.9.0",
+    "node-rest-client": "^1.5.1"
+  },
+  "devDependencies": {
+    "gulp-coffee": "^2.3.1"
+  }
 }
