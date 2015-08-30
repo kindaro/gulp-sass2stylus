@@ -9,13 +9,26 @@ example = 'example.scss'
 
 fs.readFile example, (err, body) ->
 
-    boundary = '------------------------9a4e1e8f72350b69'
+    newline = '\r\n'
+    blank_line = newline + newline
+
+    boundary = '------------------------we-are-the-void--------------------------'
+    body_header =
+        newline + 'Content-Disposition: form-data; name="file"; filename="example.scss"' +
+        newline + 'Content-Type: application/octet-stream' +
+        blank_line
+
+    full_body = [ boundary, body_header, body, blank_line, boundary, '--' ] .join ''
+    full_body_a = [ boundary, body_header ] .join ''
+    full_body_b = [ body, blank_line, boundary, '--' ] .join ''
+
+
     api = url.parse api
     api.method = 'POST'
     api.headers =
         'Expect': '100-continue'
         'Content-Type': 'multipart/form-data; boundary=' + boundary
-        'content-length': body.length
+        'content-length': full_body.length + 1
         'Accept': '*/*'
         'Connection': 'keep-alive'
 
@@ -32,7 +45,7 @@ fs.readFile example, (err, body) ->
 
     req.on 'continue', () ->
         console.log 'continue event received.'
-        req.write boundary + '\r\nContent-Disposition: form-data; name="file"; filename="example.scss"\r\nContent-Type: application/octet-stream\r\n\r\n'
-        req.write body + '\r\n\r\n' + boundary + '--'
+        req.write full_body_a
+        req.write full_body_b
 
 
