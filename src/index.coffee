@@ -19,6 +19,6 @@ fs.readFile example, (err, body) ->
         method: 'POST'
         body: body.toString()
 
-    cli.post api_endpoint, body, {expect: true}, (err, res) ->
+    cli.post api_endpoint, body, {}, (err, res) ->
         console.log 'request sent, response received.'
         console.log res.data
